@@ -329,6 +329,41 @@ def grafico_painel_resumo(df, metricas):
 
 
 # ---------------------------------------------------------------------------
+# BONUS B04 - Regressao linear simples (conteudo da Semana 13, nao exigido)
+# ---------------------------------------------------------------------------
+def grafico_regressao_bonus(df):
+    """Ajusta receita_total = a * quantidade + b por categoria e desenha as retas.
+
+    Variavel independente (X): quantidade. Variavel dependente (Y): receita_total.
+    Retorna um DataFrame com inclinacao (a), intercepto (b) e R2 de cada categoria.
+    """
+    fig, ax = plt.subplots(figsize=(12, 7))
+    xs = np.linspace(1, 10, 50)
+    linhas = []
+    for categoria, grupo in df.groupby("categoria"):
+        x, y = grupo["quantidade"], grupo["receita_total"]
+        inclinacao, intercepto = np.polyfit(x, y, 1)
+        r2 = np.corrcoef(x, y)[0, 1] ** 2
+        cor = CORES_CATEGORIA[categoria]
+        ax.scatter(x, y, color=cor, alpha=0.5, s=50)
+        ax.plot(xs, inclinacao * xs + intercepto, color=cor, linewidth=2.5,
+                label=f"{categoria}: y = {inclinacao:.0f}x {intercepto:+.0f}"
+                      f"  (R² = {r2:.2f})")
+        linhas.append({"categoria": categoria, "inclinacao": round(inclinacao, 2),
+                       "intercepto": round(intercepto, 2), "r2": round(r2, 3)})
+    ax.set_title("Bonus: Regressao Linear - Receita em funcao da Quantidade")
+    ax.set_xlabel("Quantidade vendida (variavel independente X)")
+    ax.set_ylabel("Receita da transacao em R$ (variavel dependente Y)")
+    ax.legend(title="Reta ajustada por categoria")
+    _salvar(fig, "bonus_regressao.png")
+
+    coeficientes = pd.DataFrame(linhas)
+    print("\n=== BONUS: REGRESSAO RECEITA x QUANTIDADE ===")
+    print(coeficientes.to_string(index=False))
+    return coeficientes
+
+
+# ---------------------------------------------------------------------------
 # RF09 - Exportacao CSV e JSON
 # ---------------------------------------------------------------------------
 def exportar_resultados(metricas, clientes, estatisticas):
@@ -390,13 +425,14 @@ class AnalisadorDeVendas:
         self.clientes = segmentar_clientes(self.df)
 
     def visualizar(self):
-        """Gera as 4 figuras PNG."""
+        """Gera as 4 figuras PNG obrigatorias e o grafico bonus de regressao."""
         configurar_estilo()
         grafico_receita_por_mes(self.metricas["por_mes"])
         grafico_top_produtos(self.metricas["top_produtos"])
         grafico_quantidade_vs_receita(self.df)
         grafico_painel_resumo(self.df, self.metricas)
-        print(f"\n4 graficos salvos em {PASTA_GRAFICOS}/")
+        grafico_regressao_bonus(self.df)
+        print(f"\n5 graficos salvos em {PASTA_GRAFICOS}/ (4 obrigatorios + 1 bonus)")
 
     def resumo(self):
         """Monta estatisticas gerais e exporta tudo."""

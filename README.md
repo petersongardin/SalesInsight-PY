@@ -1,22 +1,23 @@
 # SalesInsight PY
 
 ## Sobre o projeto
-Análise e visualização de dados de vendas desenvolvida em Python. O projeto
-gera (ou carrega), limpa, transforma, agrega e visualiza um dataset de vendas,
-produzindo métricas por período, produto, categoria e região, além de uma
-segmentação simples de clientes por faixa de gasto (Bronze, Prata, Ouro).
 
-Mini-Projeto Avaliativo M1.1 — Desenvolvedor(a) em IA para Análise Preditiva, Módulo 01.
+Análise e visualização de dados de vendas desenvolvida em Python. O projeto gera (ou carrega), limpa, transforma, agrega e visualiza um dataset de vendas, produzindo métricas por período, produto, categoria e região, além de uma segmentação simples de clientes por faixa de gasto (Bronze, Prata, Ouro).
+
+Mini-Projeto Avaliativo M1.1 - Desenvolvedor(a) em IA para Análise Preditiva, Módulo 01.
 
 ## O que o projeto analisa
+
 - Receita total e volume de vendas por mês e por trimestre
 - Top produtos e categorias por receita
 - Desempenho por região (receita e ticket médio)
 - Segmentação de clientes por nível de gasto (Bronze, Prata, Ouro)
 - Relação entre quantidade vendida e receita por transação
+- **Bônus (B04):** regressão linear simples da receita (Y, dependente) em função da quantidade (X, independente), uma reta por categoria, com inclinação e R²
 - Exportação de relatórios em CSV e JSON e de gráficos em PNG
 
-## Conceitos aplicados (Módulo 01 — Semanas 01 a 07)
+## Conceitos aplicados (Módulo 01 - Semanas 01 a 07)
+
 - **Lógica de programação:** variáveis, tipos (`int`, `float`, `str`, `bool`, `list`, `dict`), operadores, `if/elif/else`, `for`
 - **Estruturas de dados:** lista de dicionários (dataset), dicionário de métricas, dicionário de relatório de limpeza
 - **Funções:** parâmetros, retorno, docstring, `lambda` (3 usos), função de ordem superior (`processar_coluna`)
@@ -31,10 +32,12 @@ Mini-Projeto Avaliativo M1.1 — Desenvolvedor(a) em IA para Análise Preditiva,
 ## Como executar
 
 ### Google Colab
+
 1. Faça upload de `salesinsight.py` para o Colab.
 2. Execute: `!python salesinsight.py` (o `vendas.csv` é gerado automaticamente).
 
 ### Localmente (VS Code / terminal)
+
 1. Instale o Python 3.10+.
 2. Instale as dependências:
    ```
@@ -46,6 +49,7 @@ Mini-Projeto Avaliativo M1.1 — Desenvolvedor(a) em IA para Análise Preditiva,
    ```
 
 ## Estrutura do projeto
+
 ```
 salesinsight-py/
 |-- salesinsight.py         # fluxo principal
@@ -61,9 +65,11 @@ salesinsight-py/
         |-- top_produtos.png
         |-- quantidade_vs_receita.png
         |-- painel_resumo.png
+        |-- bonus_regressao.png
 ```
 
 ## Decisões técnicas
+
 - **Datas inválidas são removidas, não mantidas.** Sem data não é possível
   atribuir a venda a mês/trimestre, então mantê-la distorceria as métricas por
   período. Como são ~3% dos registros (6 de 200), a perda é pequena e é
@@ -74,6 +80,7 @@ salesinsight-py/
 - **`seed=42`** no gerador, para o dataset ser idêntico em qualquer máquina.
 
 ## O que o `.gitignore` ignora, e por quê
+
 - **`__pycache__/` e `*.pyc`:** bytecode compilado que o próprio Python gera
   ao executar o script. É reconstruído automaticamente a cada execução, não
   tem valor fora da máquina de quem rodou — versionar isso só poluiria o
@@ -99,14 +106,17 @@ professor e os colegas vejam o resultado final sem precisar instalar nada
 ou rodar o script.
 
 ## Limitações conhecidas
+
 - O gerador só "suja" a coluna de data; por isso o relatório mostra 0 colunas com tipo convertido (os tipos numéricos já vêm corretos do CSV).
 - Com os limites do enunciado (Bronze < R$ 5.000; Ouro > R$ 15.000), a maioria dos clientes cai em Ouro (35 de 49).
 
 ## Ferramentas utilizadas
+
 - Python 3.10+
 - Bibliotecas: pandas, numpy, matplotlib, seaborn, json, datetime, os, random
 - VS Code / Google Colab
 - Git e GitHub
 
 ## Vídeo de demonstração
+
 [inserir o link do Google Drive ou do YouTube aqui]
