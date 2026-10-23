@@ -352,6 +352,15 @@ entre as etapas, e `main()` só roda quando o arquivo é executado direto —
 isso é o que o `if __name__ == '__main__'` garante, e é o que permite
 reimportar o módulo em outro projeto sem disparar tudo de novo."
 
+**Validação extra, opcional de mencionar:** além de rodar manualmente no
+Colab/VS Code, testei o notebook (`SalesInsight_PY_Colab.ipynb`) de ponta a
+ponta de forma automática pelo terminal antes de gravar o vídeo, para
+garantir que todas as 31 células rodam sem erro e reproduzem os mesmos
+resultados do `salesinsight.py`. Isso não é conteúdo do módulo — é só uma
+checagem de qualidade antes da entrega. Se perguntarem, basta dizer: "testei
+o notebook inteiro de forma automática antes de gravar, para garantir que
+não teria erro ao vivo."
+
 ❓ **P10:** o que acontece com `main()` se outro arquivo fizer `import salesinsight`?
 
 ---
