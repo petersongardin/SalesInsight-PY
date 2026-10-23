@@ -73,6 +73,31 @@ salesinsight-py/
 - **Nomes de mês por dicionário** (`MESES_PT`), porque `strftime("%B")` retorna inglês no Colab.
 - **`seed=42`** no gerador, para o dataset ser idêntico em qualquer máquina.
 
+## O que o `.gitignore` ignora, e por quê
+- **`__pycache__/` e `*.pyc`:** bytecode compilado que o próprio Python gera
+  ao executar o script. É reconstruído automaticamente a cada execução, não
+  tem valor fora da máquina de quem rodou — versionar isso só poluiria o
+  histórico com arquivos binários que mudam sem o código mudar.
+- **`.venv/`:** a pasta do ambiente virtual Python (onde ficam as
+  bibliotecas instaladas). Pode ter centenas de MB e é 100% reproduzível a
+  partir do `requirements.txt` com `pip install -r requirements.txt` — por
+  isso não entra no repositório, só a lista de dependências.
+- **`.vscode/` e `.idea/`:** configurações do editor (VS Code / PyCharm)
+  específicas da máquina de quem está editando — não fazem parte do
+  projeto em si.
+- **`.DS_Store` e `Thumbs.db`:** arquivos que o macOS e o Windows criam
+  automaticamente em qualquer pasta para guardar metadados de exibição
+  (ícones, miniaturas); não têm relação com o projeto.
+- **`*.log`:** eventuais arquivos de log gerados em execuções locais.
+
+**O que propositalmente *não* está no `.gitignore`:** `vendas.csv` e tudo em
+`outputs/` (CSVs, JSON e os 4 gráficos PNG) **estão versionados de
+propósito**. Em um projeto real esses resultados seriam gerados em cada
+execução e não precisariam ir para o Git; aqui, como é um trabalho
+acadêmico avaliado, mantê-los visíveis no repositório permite que o
+professor e os colegas vejam o resultado final sem precisar instalar nada
+ou rodar o script.
+
 ## Limitações conhecidas
 - O gerador só "suja" a coluna de data; por isso o relatório mostra 0 colunas com tipo convertido (os tipos numéricos já vêm corretos do CSV).
 - Com os limites do enunciado (Bronze < R$ 5.000; Ouro > R$ 15.000), a maioria dos clientes cai em Ouro (35 de 49).
