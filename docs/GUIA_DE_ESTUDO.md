@@ -410,3 +410,39 @@ integrei tudo via merge na `develop` e depois na `main`."
 atribuir a venda a um mês ou trimestre; manter distorceria as métricas por
 período. Eram 6 de 200 registros (3%), e a perda aparece no relatório de
 limpeza."
+
+## Roteiro da gravação (OBS, uma tomada só, ≤ 5 min)
+
+**Antes de gravar, deixe aberto:** PowerPoint com `SalesInsight_PY.pptx`,
+VS Code na pasta do projeto, o notebook `SalesInsight_PY_Colab.ipynb` e o
+`vendas.csv` no Excel. No OBS: tela + webcam + microfone.
+
+**Parte 1 — apresentação (~3 min 40 s).** São 21 slides e o limite é 5 min,
+então não dá para parar em todos. Sugestão de tempo:
+
+| Slides | Tempo |
+|---|---|
+| 1 capa + 2 instalação | 20 s |
+| 3–8 (RF01 a RF06) | 15 s cada, 1 min 30 s |
+| 9–12 (gráficos) | passe rápido pelos 3 primeiros, pare no painel (12): 35 s |
+| 13–15 (RF08, RF09, RF10) | 30 s |
+| 16–18 (branches, commits, Kanban) | 30 s |
+| 19 decisão técnica | 20 s |
+| 20 melhorias + 21 checklist | 15 s |
+
+**Parte 2 — provas ao vivo (~1 min 15 s).** Feche a apresentação sem parar a
+gravação e mostre, nesta ordem:
+
+1. VS Code, painel de arquivos: a estrutura do projeto.
+2. `.gitignore`, e diga em uma frase o que ele ignora.
+3. `README.md`, rolando por objetivo, como executar e conceitos.
+4. `vendas.csv` aberto no Excel, mostrando a linha com "DATA INVALIDA".
+5. `salesinsight.py`: rode `python salesinsight.py` no terminal do VS Code e
+   mostre o relatório de limpeza e as métricas aparecendo.
+6. Pasta `outputs/graficos/` com os 4 PNGs gerados.
+7. `SalesInsight_PY_Colab.ipynb` aberto, rolando pelas células já executadas.
+8. Aba de extensões do VS Code: Python e Jupyter instaladas.
+9. Navegador: repositório no GitHub (branches e commits) e o board do Trello.
+
+Frase de fechamento: "Tudo o que está na apresentação existe no repositório e
+roda do zero, sem erro."
